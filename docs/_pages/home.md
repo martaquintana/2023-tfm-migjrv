@@ -1,18 +1,3 @@
-
-Hello, everybody! Welcome to my TFG Page! 
-
-I'm Marta Quintana, 
-here I am going to put all the advances of my end of degree project, and everything I have learned in this process.
-
-Regards!
-
-TFM title: 
-
-
-TFM Tutor:
-
-- [Jorge López](https://mastergraficos.com/jorge-lopez/)
-
 ---
 layout: splash
 permalink: /
