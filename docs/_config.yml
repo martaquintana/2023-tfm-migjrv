@@ -16,16 +16,16 @@ minimal_mistakes_skin    : "air"
 
 # Site Settings
 #locale                   : "en-US"
-title                    : "TFG Blog "
+title                    : "TFM Blog "
 title_separator          : "-"
-subtitle                 : GAMIFICATION OF AN EDUCATIONAL PLATFORM
-name                     : "JdeRobot"
-description              : "TFG Title"
-url                      : http://jderobot.github.io/2019-tfm-ignacio-arranz
+subtitle                 : 
+name                     : "SEDDI & URJC"
+description              : "TFM Title"
+url                      : 
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : JdeRobot
+repository               : martaquintana
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : /assets/images/peloto.png
+logo                     : /assets/images/logo.png
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -124,25 +124,22 @@ analytics:
 author:
   name             : "Marta Quintana"
   avatar           : "/assets/images/profile.jpg"
-  bio              : "Site for my TFG"
+  bio              : "Site for my TFM"
   location         : "Toledo"
   email            :
   links:
     #- label: "Email"
     # icon: "fas fa-fw fa-envelope-square"
-    #url: n.arranz.agueda@gmail.com
+    #url: martaqp97@gmail.com
   #  - label: "About Me"
   #   icon: "fas fa-fw fa-link"
-  #   url: "https://igarag.github.io/online-cv/"
-  #  - label: "Twitter"
-  #   icon: "fab fa-fw fa-twitter-square"
-  #   url: "https://twitter.com/i__arranz"
+  #   url: "https://www.linkedin.com/in/marta-quintana-portales-4627b8207/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/martaquintana/"
     #- label: "Youtube"
     #  icon: "fab fa-fw fa-youtube"
-    #  url: "https://www.youtube.com/channel/UCgmUgpircYAv_QhLQziHJOQ"
+    #  url: "https://www.youtube.com/watch?v=AQTgzlU7C5o"
 
 
 #################################################################################

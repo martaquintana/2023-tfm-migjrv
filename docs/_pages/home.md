@@ -45,11 +45,11 @@ here I am going to put all the advances of my end of degree project, and everyth
 
 Regards!
 
-TFG title: GAMIFICACIÓN DE UNA PLATAFORMA EDUCATIVA - GAMIFICATION OF AN EDUCATIONAL PLATFORM
+TFM title: 
 
 
-TFG Tutor:
+TFM Tutor:
 
-- [Jose Maria Cañas](https://gsyc.urjc.es/jmplaza/)
+- [Jorge López](https://mastergraficos.com/jorge-lopez/)
 
 
