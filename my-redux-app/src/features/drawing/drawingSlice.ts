@@ -2,11 +2,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface DrawingState {
-  points: { x: number; y: number }[];
+  controlPoints: { x: number; y: number }[];
 }
 
 const initialState: DrawingState = {
-  points: [],
+  controlPoints: [],
 };
 
 const drawingSlice = createSlice({
@@ -14,10 +14,10 @@ const drawingSlice = createSlice({
   initialState,
   reducers: {
     addPoint: (state, action: PayloadAction<{ x: number; y: number }>) => {
-      state.points.push(action.payload);
+      state.controlPoints.push(action.payload);
     },
     clearCanvas: (state) => {
-      state.points = [];
+      state.controlPoints = [];
     },
   },
 });

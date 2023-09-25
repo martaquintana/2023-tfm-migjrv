@@ -85,4 +85,26 @@ export class BezierCurve2 {
         return null
     }
     
+    scale(scaleFactor:number) {
+        const center = this.calculateCenter();
+        this.controlPoints.forEach((point) => {
+          const dx = point.position.x - center.x;
+          const dy = point.position.y - center.y;
+          point.position.x = center.x + dx * scaleFactor;
+          point.position.y = center.y + dy * scaleFactor;
+        });
+      }
+    
+      // Calcula el centro de la curva
+      calculateCenter() {
+        let centerX = 0;
+        let centerY = 0;
+        this.controlPoints.forEach((point) => {
+          centerX += point.position.x;
+          centerY += point.position.y;
+        });
+        centerX /= this.controlPoints.length;
+        centerY /= this.controlPoints.length;
+        return { x: centerX, y: centerY };
+      }
 }

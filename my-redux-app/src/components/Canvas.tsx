@@ -25,6 +25,8 @@ let context: CanvasRenderingContext2D
 /** Graphical objects */
 let controlPointToEdit: Point2 | null
 let controlPoints: Point2Draw[] = []
+let controlPoints2: Point2Draw[] = []
+
 const bezierPath: BezierPath2 = new BezierPath2
 let bezierPathDraw: BezierPath2Draw = new BezierPath2Draw(bezierPath)
 
@@ -64,6 +66,7 @@ const Canvas: React.FC = () => {
   const handleClearCanvas = () => {
     dispatch(clearCanvas());
     controlPoints = [];
+    controlPoints2 = [];
     bezierPathDraws=[];
   };
   
@@ -217,24 +220,39 @@ const handleCanvasMouseDown = (event: MouseEvent) => {
     controlPoints.push(
         new Point2Draw(p)
     )
-    
+    const p2 = new Point2(x+100, y)
+
+    controlPoints2.push(
+        new Point2Draw(p2)
+    )
+
     if (button === 2 ) { // right click
         const points = controlPoints.map((point: Point2Draw) => point.point2)
+        const points2 = controlPoints2.map((point: Point2Draw) => point.point2)
 
         try {
             const bezierCurve = new BezierCurve2(points)
+            const bezierCurve2 = new BezierCurve2(points2)
+
             if (creatingNewPath || bezierPathDraws.length === 0) {
                 const newBezierPath = new BezierPath2(); // Crear un nuevo BezierPath2
                 newBezierPath.addCurve(bezierCurve);
                 bezierPathDraws.push(new BezierPath2Draw(newBezierPath));
+                const newBezierPath2 = new BezierPath2(); // Crear un nuevo BezierPath2
+                newBezierPath2.addCurve(bezierCurve2);
+                bezierPathDraws.push(new BezierPath2Draw(newBezierPath2));
                 creatingNewPath = false; // Restablecer creatingNewPath
             } else {
                 // Agregar la curva al último BezierPath2
-                bezierPathDraws[bezierPathDraws.length - 1].bezierPath.addCurve(bezierCurve);
+                bezierPathDraws[bezierPathDraws.length - 2].bezierPath.addCurve(bezierCurve);
+                bezierPathDraws[bezierPathDraws.length - 1].bezierPath.addCurve(bezierCurve2);
+
             }
             console.log(bezierPathDraws)
 
             controlPoints = controlPoints.slice(-1)
+            controlPoints2 = controlPoints2.slice(-1)
+
         } catch (e) {
             if (e instanceof Error) {
                 // Get the initial control point
@@ -279,15 +297,44 @@ const handleCanvasMouseDown = (event: MouseEvent) => {
                     }
                 }
                 break;
+            case "e":
+                if(bezierPathDraws.length !== 0){
+                    bezierPathDraws[0].bezierPath.getSegment(0).scale(1.2);
+
+                    // Escala la segunda curva en bezierPathDraws[1]
+                    bezierPathDraws[1].bezierPath.getSegment(0).scale(1.2);
+                }
+                break;
+            case "m":
+                if(bezierPathDraws.length !== 0){
+                    bezierPathDraws[0].bezierPath.getSegment(0).scale(0.8);
+                    // Escala la segunda curva en bezierPathDraws[1]
+                    bezierPathDraws[1].bezierPath.getSegment(0).scale(0.8);
+                }
+                break;
             case "2":
                 console.log("Vincular puntos de control")
                 // Arreglo para mantener los puntos de control vinculados
+                linkedControlPoints=[];
 
-                linkedControlPoints = [
-                    "000:100", // Asociación entre Path 0, Curve 0, Punto de control 0 y Path 1, Curve 0, Punto de control 0
-                    "001:101", // Asociación entre Path 0, Curve 0, Punto de control 1 y Path 1, Curve 0, Punto de control 1
-                    "002:102", // Asociación entre Path 0, Curve 0, Punto de control 2 y Path 1, Curve 0, Punto de control 2
-                ];
+                const pathIndexA = 0;
+                const pathIndexB = 1;
+                for (let i = 0; i < bezierPathDraws[pathIndexA].bezierPath.length; i++) {
+
+                    const curveA = bezierPathDraws[pathIndexA].bezierPath.getSegment(0);
+                    const curveB = bezierPathDraws[pathIndexB].bezierPath.getSegment(0);
+                
+                
+                    // Asumimos que ambas curvas tienen la misma cantidad de puntos de control
+                    const numControlPoints = Math.min(curveA.controlPoints.length, curveB.controlPoints.length);
+                
+                    for (let j = 0; j < numControlPoints; j++) {
+                    linkedControlPoints.push(`${pathIndexA}${i}${j}:${pathIndexB}${i}${j}`);
+                    }
+                }
+
+                console.log(linkedControlPoints);
+                
                 linked=true;
             break
             case " ":
