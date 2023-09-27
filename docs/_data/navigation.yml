@@ -10,6 +10,9 @@ main:
   - title: References
     url: /references/
 
+  - title: About Me
+    url: /about/
+
 # left side bar
 docs:
   - title: LogBook
@@ -22,8 +25,14 @@ docs:
     - title: How to install
       url: /install/
 
-  - title: About
+  - title: References
     children:
     - title: References
       url: /references/
+
+  - title: About Me
+    children:
+    - title: About Me
+      url: /about/
+
   
