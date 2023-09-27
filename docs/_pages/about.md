@@ -17,7 +17,7 @@ sidebar:
 
 💞️ I’m looking to collaborate on video games, websites, movies, or animation films.
 
-📫 How to reach me:
+📫 How to reach me: martaqp97@gmail.com
 
 
 
