@@ -27,5 +27,7 @@ classes: wide
   - [4] Garment Patern Estimation
   - [5] Seddi Author https://seddiauthor.com/
   - [6] Cameo https://wildginger.com/cameo/default.htm
+  - [7] https://paperswithcode.com/paper/deepspline-data-driven-reconstruction-of
+  - [8] Graphics Gems 8.AN ALGORITHM FOR AUTOMATICALLY FITTING DIGITIZED CURVES
   
   
