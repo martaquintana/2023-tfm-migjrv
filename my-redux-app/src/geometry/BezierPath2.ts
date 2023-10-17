@@ -1,4 +1,5 @@
 import { BezierCurve2 } from "./BezierCurve2"
+import { Point2 } from "./Point2"
 
 /** This class encapsulates the behavior of a Bezier curves path. If closed,
  * the path add an extra curve joininig the starting and ending curves.
@@ -39,5 +40,6 @@ export class BezierPath2 {
     public addCurve(bezierCurve: BezierCurve2) {
         this._bezierCurves.push(bezierCurve)
     }
+
     
 }

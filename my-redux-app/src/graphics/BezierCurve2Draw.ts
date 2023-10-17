@@ -16,7 +16,7 @@ export class BezierCurve2Draw {
         context.save()
         this.bezierCurve.controlPoints.forEach((controlPoint: Point2) => {
             const {x, y} = controlPoint.position
-            drawDot(context, x, y, DOT_STYLE.square)
+            drawDot(context, x, y, DOT_STYLE.square, 5,'#ff8000')
         })
 
         const p0 = this.bezierCurve.controlPoints[0]

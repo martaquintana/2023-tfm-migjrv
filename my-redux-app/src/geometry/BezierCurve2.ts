@@ -107,4 +107,27 @@ export class BezierCurve2 {
         centerY /= this.controlPoints.length;
         return { x: centerX, y: centerY };
       }
+
+      public distanceToPoint(point: Point2): number {
+        let minDistance = Number.MAX_VALUE;
+    
+        // Aproximar la curva de Bezier mediante segmentos de línea
+        const numSegments = 100; // Número de segmentos para la discretización
+        let lastPoint = this.eval(0);
+    
+        for (let i = 1; i <= numSegments; i++) {
+            const t = i / numSegments;
+            const currentPoint = this.eval(t);
+            const distance = point.distance(currentPoint);
+    
+            if (distance < minDistance) {
+                minDistance = distance;
+            }
+    
+            lastPoint = currentPoint;
+        }
+    
+        return minDistance;
+    }
+    
 }

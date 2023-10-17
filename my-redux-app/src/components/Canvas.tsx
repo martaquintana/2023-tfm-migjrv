@@ -2,8 +2,7 @@
 import React, { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
-import { addPoint, clearCanvas } from '../features/drawing/drawingSlice';
-import { setControlPoints } from '../features/bezierCurve/bezierCurveSlice';
+import { setControlPoints, setControlPoints2, clearCanvas } from '../features/bezierCurve/bezierCurveSlice';
 
 import {
     Point2,
@@ -48,23 +47,10 @@ let creatingNewPath = false;
   
 const Canvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const dispatch = useDispatch();
-
-  const handleCanvasClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
-    if (canvasRef.current) {
-      const rect = canvasRef.current.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      console.log(controlPoints.length )
-        dispatch(addPoint({ x, y }));
-        if (controlPoints.length <= 3) {
-          //dispatch(setControlPoints([...controlPoints, { x, y }]));
-        }
-      }   
-  };
+  //const dispatch = useDispatch();
 
   const handleClearCanvas = () => {
-    dispatch(clearCanvas());
+    //dispatch(clearCanvas());
     controlPoints = [];
     controlPoints2 = [];
     bezierPathDraws=[];
@@ -390,7 +376,7 @@ const handleCanvasMouseDown = (event: MouseEvent) => {
         ref={canvasRef}
         width={width}
         height={height}
-        onClick={handleCanvasClick}
+        //onClick={handleCanvasClick}
         style={{ border: '1px solid black' }}
       />
 
