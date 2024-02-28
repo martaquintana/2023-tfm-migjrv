@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Line Length with Both Points Movement</title>
+</head>
+<body>
+  <label for="lengthInput">Longitud Deseada:</label>
+  <input type="number" id="lengthInput" value="200"><br>
+  <canvas id="myCanvas" width="500" height="500" style="border:1px solid black;"></canvas>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+
+      // Puntos inicial y final
+      var p1 = { x: 50, y: 350 };
+      var p2 = { x: 75, y: 250 };
+
+      // Dibujar la línea inicial
+      drawLine(p1, p2);
+
+      // Escuchar cambios en el input de longitud
+      var lengthInput = document.getElementById("lengthInput");
+      lengthInput.addEventListener("input", updateLine);
+
+      // Función para actualizar la línea
+      function updateLine() {
+        var length = parseFloat(lengthInput.value);
+        
+        if (!isNaN(length) && length > 0) {
+          // Calcular la longitud actual de la línea
+          var currentLength = calculateLength(p1, p2);
+
+          // Calcular la diferencia de longitud
+          var difference = length - currentLength;
+
+          // Calcular la dirección y la distancia entre los puntos p1 y p2
+          var dx = p2.x - p1.x;
+          var dy = p2.y - p1.y;
+          var distance = Math.sqrt(dx * dx + dy * dy);
+
+          // Normalizar el vector de dirección
+          var ux = dx / distance;
+          var uy = dy / distance;
+
+          // Calcular los incrementos para mover los puntos p1 y p2 a lo largo de la línea
+          var incrementX = ux * difference / 2;
+          var incrementY = uy * difference / 2;
+
+          // Mover los puntos p1 y p2
+          p1.x -= incrementX;
+          p1.y -= incrementY;
+          p2.x += incrementX;
+          p2.y += incrementY;
+
+          // Borrar el lienzo y dibujar la línea actualizada
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          drawLine(p1, p2);
+        }
+      }
+
+      // Función para calcular la longitud entre dos puntos
+      function calculateLength(start, end) {
+        return Math.sqrt(Math.pow(end.x - start.x, 2) + Math.pow(end.y - start.y, 2));
+      }
+
+      // Función para dibujar una línea entre dos puntos
+      function drawLine(start, end) {
+        ctx.beginPath();
+        ctx.moveTo(start.x, start.y);
+        ctx.lineTo(end.x, end.y);
+        ctx.strokeStyle = "green";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    });
+  </script>
+</body>
+</html>
+
+
